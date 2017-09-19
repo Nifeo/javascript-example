@@ -1,1 +1,1 @@
-# javascript-example
+# personal javascript practice
