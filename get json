@@ -1,3 +1,5 @@
+"use strict";
+
 function getArray(){
 	var a = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	var resultArray=new Array();
@@ -18,9 +20,9 @@ function getArray(){
 	
 }
 
-function runS(){
+function getFirstLink(){
 	var link = new Array();
-	var prefix = "https://www.kitomba.com/k1/clients_ajax/query/";
+	var prefix = "https://www.example.com/k1/clients_ajax/query/";
 	var subfix = "/30/0/1/?exclude_casual=true";
 	for(var x = 0; x < getArray().length; x++){
 		for(var y = 0; y < 10; y++){
@@ -30,15 +32,22 @@ function runS(){
 	return link;
 }
 
-function Srun(){
-	var b = runS();
-	for(var x = 0; x < b.length; x++){
-		$.getJSON(b[x], function(da){
-				for(var y = 0; y  <= da.results.length -1; y++){
-					console.log(da.results[y].first_name + " " + da.results[y].last_name+","+da.results[y].gender+","+da.results[y].email+","+da.results[y].phone+","+da.results[y].postal_code+","+da.results[y].suburb+","+da.results[y].street) ;
-				}
-		});
-		console.log(x);
-	}
+
+
+function getSecondLink(){
+	var flink = getFirstLink();
+	var slink = new Array();
+	var sperfix = "https://www.example.com/k1/clients_ajax/get_customer_by_kid/79de97ed2d8871d5514ebff2ad6a6c52/";
+	var ssubfix = "/true";
+	for(var x in flink){
+		console.log($.getJSON(flink[x],function(re){
+			for(var y =0; y < re.results.length; y++){
+				var sublink = sperfix+re.results[y].kid+ssubfix;
+				$.getJSON(sublink,function(z){
+					console.log(z.data.first_name+ " " +z.data.last_name + "," + z.data.gender + "," +  z.data.birth_day + "," +  z.data.birth_month + "," +  z.data.birth_year + "," +  z.data.email + "," +  z.data.phone + "," +  z.data.postal_code + "," +  z.data.suburb + "," +  z.data.street);
+				});
+			}
+		}));
+}
 }
 
