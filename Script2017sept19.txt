@@ -1,0 +1,44 @@
+function getArray(){
+	var a = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	var resultArray=new Array();
+	var c;
+
+	for(var x = 0; x  <= a.length -1; x++){
+		for(var y = 0; y  <= a.length -1; y++){
+			try{
+				resultArray.push(a[x]+a[y]);
+			}catch(err){}
+		}
+	}
+
+	for(var z = 0; z  <= resultArray.length -1; z++){
+		c += resultArray[z]+",";
+	}
+	return resultArray;
+	
+}
+
+function runS(){
+	var link = new Array();
+	var prefix = "https://www.kitomba.com/k1/clients_ajax/query/";
+	var subfix = "/30/0/1/?exclude_casual=true";
+	for(var x = 0; x < getArray().length; x++){
+		for(var y = 0; y < 10; y++){
+			link.push(prefix + getArray()[x] + "/" + y + subfix);
+		}	
+	}
+	return link;
+}
+
+function Srun(){
+	var b = runS();
+	for(var x = 0; x < b.length; x++){
+		$.getJSON(b[x], function(da){
+				for(var y = 0; y  <= da.results.length -1; y++){
+					console.log(da.results[y].first_name + " " + da.results[y].last_name+","+da.results[y].gender+","+da.results[y].email+","+da.results[y].phone+","+da.results[y].postal_code+","+da.results[y].suburb+","+da.results[y].street) ;
+				}
+		});
+		console.log(x);
+	}
+}
+
