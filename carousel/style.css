@@ -3,17 +3,16 @@
 	width:150px;
 	overflow:hidden;
 }
+
 .carousel-div {
 	overflow:hidden; 
 	height:100%; 
-	width:330%;
+	width:400%;
 }
 
-.carousel_move1 {
-	-webkit-animation:carousel_move-animation 2s infinite;
+.carousel_move {
 	animation: carous_move-animation 2s infinite;
 }
-
 
 .carousel_item{
 	position:relative;
