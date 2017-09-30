@@ -1,6 +1,36 @@
-.carousel-div{
+.carousel_viewpoint{
+	height:150px;
+	width:150px;
+	overflow:hidden;
+}
+.carousel-div {
 	overflow:hidden; 
-	height:64px; 
-	width:64px;
+	height:100%; 
+	width:330%;
 }
 
+.carousel_move1 {
+	-webkit-animation:carousel_move-animation 2s infinite;
+	animation: carous_move-animation 2s infinite;
+}
+
+
+.carousel_item{
+	position:relative;
+	float:left;
+	margin-left:1px;
+	margin-right:1px;
+}
+
+@keyframes carous_move-animation{
+	0% {left:0%;}
+	50% {left:-33%;}
+	100% {left:-66%;}
+}
+
+
+@-webkit-keyframes carous_move-animation{
+	0% {left:0%;}
+	50% {left:-33%;}
+	100% {left:-66%;}
+}
